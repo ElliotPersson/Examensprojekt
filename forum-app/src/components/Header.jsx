@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 function Header() {
 
-    return(<>
-    
-    <header>
-        <button id="login-btn">Login</button>
+    return(
+
+    <header className="header">
+        <button className="login-btn">Login</button>
         <Link to="/register">Register</Link>
 
         
-        <div id="hamburger-menu">
+        <div className="hamburger-menu">
             <span></span>
             <span></span>
             <span></span>
@@ -18,7 +18,7 @@ function Header() {
     </header>
     
     
-    </>)
+    )
 }
 
 
