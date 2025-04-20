@@ -1,18 +1,72 @@
 
-
 body {
+  
   margin: 0;
   padding: 0;
-
+  background-color: #1A1A1A;
+  font-family: sans-serif;
 }
 
 
 .header {
-
-  background-color: green;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #1A1A1A;
   padding: 1rem;
-  width: 100vw;
-  
+  width: 100%;
+  box-sizing: border-box;
+}
 
+
+.auth-btns {
   
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+
+.login-btn {
+  
+  background-color: #00DFA2;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+}
+
+
+.register-btn {
+  
+  display: block;
+  color: #00DFA2;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+
+.hamburger-menu {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  margin-top: 0.25rem;
+}
+
+.hamburger-menu span {
+  
+  display: block;
+  height: 4px;
+  background-color: #FAFAFA;
+  border-radius: 2px;
 }

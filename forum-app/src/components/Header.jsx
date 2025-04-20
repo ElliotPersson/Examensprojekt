@@ -6,8 +6,13 @@ function Header() {
     return(
 
     <header className="header">
+        
+        <div className="auth-btns">
+        
         <button className="login-btn">Login</button>
-        <Link to="/register">Register</Link>
+        <Link to="/register" className="register-btn">Register</Link>
+        
+        </div>
 
         
         <div className="hamburger-menu">
@@ -20,6 +25,7 @@ function Header() {
     
     )
 }
+
 
 
 export default Header;
