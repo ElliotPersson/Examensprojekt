@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route,} from "react-router-dom"; /* Library for routing between pages */
 import "./App.css"
 import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
 import HomePage from "./pages/HomePage.jsx";
 /* import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx"; */
@@ -23,6 +24,8 @@ function App() {
   </Routes>
   
   </BrowserRouter>
+
+  <Footer/>
   </>
   ) 
   
