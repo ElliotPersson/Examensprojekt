@@ -1,5 +1,6 @@
 import { useState, useEffect, } from "react";
 import { getAllPosts } from "../firebase/firestore/posts";
+import { Link } from "react-router-dom";
 
 function Posts() {
 
@@ -19,19 +20,21 @@ function Posts() {
 
 
 
-    return(
+    return (
 
         <div className="post-section">
 
             <h3>See anything interesting?</h3>
 
-                {posts.map(post => (
-            
-            <div key={post.id} className="post">
-                <h3>{post.title}</h3>
-                <p>{post.content}</p>
-            </div>
-  ))}
+            {posts.map(post => (
+                <Link to={`/post/${post.id}`} key={post.id}>
+                    <div className="post">
+                        <h3>{post.title}</h3>
+                        <p>{post.content}</p>
+                    </div>
+                </Link>
+            ))}
+
 
         </div>
     )

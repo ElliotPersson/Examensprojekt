@@ -11,6 +11,14 @@ body {
   font-family: sans-serif;
 }
 
+h1 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
