@@ -135,3 +135,77 @@ p {
   color: white;
   text-decoration: none;
 }
+
+
+.post-section {
+  background-color: #00DFA2;
+  padding: 1rem;
+  overflow: hidden;
+  padding: 0;
+  height: 40vh;
+}
+
+.post-section h3 {
+  color: #000000;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.posts-container {
+  display: flex;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  gap: 2rem;
+  padding-bottom: 15rem;
+  padding-top: 2rem;
+}
+
+.posts-container::-webkit-scrollbar {
+  height: 0;
+}
+
+.post-wrapper {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.post-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.post {
+  background-color: #FAFAFA;
+  padding: 1rem;
+  border-radius: 8px;
+  min-width: 150px;
+  max-width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post:hover {
+  transform: scale(1.05);
+}
+
+.post h3 {
+  margin-top: 0;
+  color: #1A1A1A;
+  text-decoration: 0;
+}
+
+.post p {
+  color: #1A1A1A;
+  text-align: center;
+  text-decoration: 0;
+}
+.post-section a {
+  text-decoration: none;
+}

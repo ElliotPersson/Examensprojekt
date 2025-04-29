@@ -28,8 +28,8 @@ function Header() {
 
             <div className={`menu-panel ${menuOpen ? "open" : ""}`}>
                 <nav>
-                    <Link to="/create">Create Post</Link>
-                    { }
+                    <Link to="/create" onClick={() => setMenuOpen(false)} >Create Post</Link>
+                
                 </nav>
             </div>
 

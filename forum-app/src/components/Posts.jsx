@@ -21,23 +21,24 @@ function Posts() {
 
 
     return (
-
         <div className="post-section">
-
-            <h3>See anything interesting?</h3>
-
+          <h3>See anything interesting?</h3>
+      
+          <div className="posts-container">
             {posts.map(post => (
-                <Link to={`/post/${post.id}`} key={post.id}>
-                    <div className="post">
-                        <h3>{post.title}</h3>
-                        <p>{post.content}</p>
-                    </div>
+              <div key={post.id} className="post-wrapper">
+                <Link to={`/post/${post.id}`} className="post-link">
+                  <div className="post">
+                    <h3>{post.title}</h3>
+                    <p>{post.content}</p>
+                  </div>
                 </Link>
+              </div>
             ))}
-
-
+          </div>
         </div>
-    )
-}
+      )
+      
+      }
 
 export default Posts;
