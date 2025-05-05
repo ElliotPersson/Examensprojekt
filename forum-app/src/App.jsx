@@ -6,6 +6,7 @@ import Footer from "./components/Footer.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import CreatePage from "./pages/CreatePage.jsx"
 import PostPage from "./pages/PostPage.jsx"
+import RegisterPage from "./pages/RegisterPage.jsx";
 /* import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx"; */
 
@@ -23,6 +24,7 @@ function App() {
     <Route path="/" element={<HomePage />} />
     <Route path="/create" element={<CreatePage />} />
     <Route path="/post/:id" element={<PostPage />} />
+    <Route path="/register" element={<RegisterPage />} />
     
    {/*  <Route path="/login" element={<LoginPage />} />
     <Route path="/register" element={<RegisterPage />} /> */}

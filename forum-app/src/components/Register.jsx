@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../firebase/firebase"; 
+import { setDoc, doc, serverTimestamp } from "firebase/firestore";
+
 
 
 
@@ -9,17 +11,38 @@ function Register() {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("")
 
-    async function handleSubmit() {
+    async function handleSubmit(e) {
         
+        e.preventDefault()
+
+        try {
+            const userCred = await createUserWithEmailAndPassword(auth, email, password);
+            console.log("User registered:", userCred.user);
+
+            await setDoc(doc(db, "users", userCred.user.uid), {
+                email: userCred.user.email,
+                createdAt: serverTimestamp(),
+                username
+                
+            });
+
+        } catch (error) {
+            console.error("Error during registration", error.message);
+        }
+
     }
 
     return (
-
-        <form>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+        
+        <form onSubmit={handleSubmit}>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="mail" />
+            <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="username" />
+            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" />
             <button>Register</button>
         </form>
     )
 }
+
+export default Register;
