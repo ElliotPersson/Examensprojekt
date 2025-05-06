@@ -11,7 +11,7 @@ function Header() {
 
             <div className="auth-btns">
 
-                <button className="login-btn">Login</button>
+                <button className="login-btn"><Link to="/login" className="login-btn">Login</Link></button>
                 <Link to="/register" className="register-btn">Register</Link>
 
             </div>
