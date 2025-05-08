@@ -209,3 +209,38 @@ p {
 .post-section a {
   text-decoration: none;
 }
+
+.auth-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.username {
+  color: white;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.logout-btn {
+  color: #00DFA2;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+}
