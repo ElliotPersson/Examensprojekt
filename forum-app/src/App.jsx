@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route,} from "react-router-dom"; /* Library for 
 import "./App.css"
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
+import RequireAuth from "./components/RequireAuth.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import CreatePage from "./pages/CreatePage.jsx"
 import PostPage from "./pages/PostPage.jsx"
 import RegisterPage from "./pages/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
-/* import LoginPage from "./pages/LoginPage.jsx";
-import RegisterPage from "./pages/RegisterPage.jsx"; */
+
 
 function App() {
   
@@ -23,7 +23,15 @@ function App() {
   
   <Routes>
     <Route path="/" element={<HomePage />} />
-    <Route path="/create" element={<CreatePage />} />
+    
+    <Route path="/create" 
+    element={
+    <RequireAuth>
+    <CreatePage />
+    </RequireAuth>
+    } 
+    />
+    
     <Route path="/post/:id" element={<PostPage />} />
     <Route path="/register" element={<RegisterPage />} />
     <Route path="/login" element={<LoginPage />} />
