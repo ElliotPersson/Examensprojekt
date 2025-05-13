@@ -35,13 +35,14 @@ function Register() {
     }
 
     return (
-        
+        <div className="form-wrapper">
         <form onSubmit={handleSubmit}>
-            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="mail" />
-            <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="username" />
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" />
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter your Email" />
+            <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="Create a username" />
+            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Create a password" />
             <button>Register</button>
         </form>
+        </div>
     )
 }
 

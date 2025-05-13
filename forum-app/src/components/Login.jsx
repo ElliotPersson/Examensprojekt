@@ -21,13 +21,13 @@ function Login() {
     }
 
     return (
-
+        <div className="form-wrapper">
         <form onSubmit={handleLogin}>
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter your email" />
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter your password" />
             <button type="submit">Login</button>
         </form>
-
+        </div>
     );
 }
 

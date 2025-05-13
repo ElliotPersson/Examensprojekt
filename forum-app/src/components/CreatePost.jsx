@@ -27,15 +27,15 @@ function CreatePost() {
  }
 
     return(<>
-
+        <div className="form-wrapper">
         <form className="create-form" onSubmit={handleSubmit}>
 
-        <input type="text" placeholder="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input type="text" placeholder="Enter a title" value={title} onChange={(e) => setTitle(e.target.value)} />
         <textarea placeholder="content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
         <button type="submit">Create post</button>
 
         </form> 
-    
+        </div>
     </>)    
 }
 

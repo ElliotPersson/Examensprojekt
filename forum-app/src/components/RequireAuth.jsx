@@ -9,12 +9,12 @@ function RequireAuth({ children }) {
     const [loading, setLoading] = useState(true) //controlls when the CreatePost component is visable     
 
 
-    // Listens for user login statsu (login or logout):
+    // Listens for user login status (login or logout):
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             
             setUser(currentUser);
-            setLoading(false); // Update loading so that the component can load when user is logged in
+            setLoading(false); // Update loading when the auth check is done
 
         });
 
