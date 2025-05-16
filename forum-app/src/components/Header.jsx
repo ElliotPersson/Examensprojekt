@@ -15,7 +15,7 @@ function Header() {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setCurrentUser(user);
             
-            // Fetch username from Firestore if user is logged in
+            // Fetch username from Firestore if user is logged in:
             if (user) {
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists()) {
@@ -75,7 +75,9 @@ function Header() {
 
             <div className={`menu-panel ${menuOpen ? "open" : ""}`}>
                 <nav>
+                    <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
                     <Link to="/create" onClick={() => setMenuOpen(false)}>Create Post</Link>
+                    
                 </nav>
             </div>
 

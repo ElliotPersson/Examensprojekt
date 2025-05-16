@@ -8,6 +8,7 @@ function CreatePost() {
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [error, setError] = useState("");
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -21,8 +22,9 @@ function CreatePost() {
             
             setTitle("");
             setContent("");
-    } catch (error) {
-        console.error("Error with adding post:", error);
+    } catch (err) {
+        console.error("Error with adding post:", err);
+        setError(err.message)
     }
  }
 
@@ -34,6 +36,8 @@ function CreatePost() {
         <textarea placeholder="content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
         <button type="submit">Create post</button>
 
+
+        {error && <p className="error-msg">{error}</p>}
         </form> 
         </div>
     </>)    

@@ -6,6 +6,7 @@ function Login() {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     async function handleLogin(e) {
         e.preventDefault();
@@ -15,8 +16,9 @@ function Login() {
             const userCred = await signInWithEmailAndPassword(auth, email, password);
             console.log("user logged in:", userCred.user)
 
-        } catch (error) {
-            console.error("Error logging in:", error.message);
+        } catch (err) {
+            console.error("Error logging in:", err.message);
+            setError(err.message);
         }
     }
 
@@ -26,6 +28,8 @@ function Login() {
             <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter your email" />
             <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Enter your password" />
             <button type="submit">Login</button>
+
+            {error && <p className="error-msg">{error}</p>}
         </form>
         </div>
     );
