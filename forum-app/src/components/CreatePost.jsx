@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 
 
 
@@ -17,7 +18,8 @@ function CreatePost() {
             await addDoc(collection(db, "posts"), {
               title,
               content,
-              createdAt: serverTimestamp()
+              createdAt: serverTimestamp(),
+              userId: auth.currentUser.uid
             });
             
             setTitle("");

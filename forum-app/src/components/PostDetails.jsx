@@ -3,9 +3,12 @@ import { doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../firebase/firebase";
 import { useState, useEffect } from "react";
 import { getComments, addComment } from "../firebase/firestore/comments";
+import EditPostButton from "./EditPost";
+import DeletePostButton from "./DeletePost";
 
 function PostDetails() {
     const { id } = useParams();
+    const currentUserId = auth.currentUser?.uid
 
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
@@ -64,6 +67,13 @@ function PostDetails() {
                     <h1>{post.title}</h1>
                     <p>{post.content}</p>
 
+                     {post.userId === currentUserId && (
+                        <div>
+                            <EditPostButton postId={id} />
+                            <DeletePostButton />
+                        </div>
+                    )}
+
                     <form onSubmit={handleSubmit}>
                         <input
                             value={newComment}
@@ -72,6 +82,8 @@ function PostDetails() {
                         />
                         <button type="submit">Send</button>
                     </form>
+
+
 
                     <div>
                         <h3>Comments</h3>
