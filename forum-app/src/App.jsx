@@ -16,12 +16,12 @@ function App() {
   
   return(
   <> 
-
+  <div className="app-container">
   {/* BrowserRouter enable routing without page reloading: */}
   <BrowserRouter>
   
   <Header/>
-  
+  <main className="main-content"> 
   <Routes>
     <Route path="/" element={<HomePage />} />
     
@@ -42,10 +42,11 @@ function App() {
    {/*  <Route path="/login" element={<LoginPage />} />
     <Route path="/register" element={<RegisterPage />} /> */}
   </Routes>
-  
-  </BrowserRouter>
-
+  </main>
   <Footer/>
+  </BrowserRouter>
+</div>
+  
   </>
   ) 
   

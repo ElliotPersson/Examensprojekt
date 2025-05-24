@@ -13,6 +13,7 @@ function PostDetails() {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
+    const [creatorUsername, setCreatorUsername] = useState("")
 
     useEffect(() => {
         async function fetchPost() {
@@ -20,7 +21,20 @@ function PostDetails() {
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
-                setPost(docSnap.data());
+                const postData = docSnap.data()
+                setPost(postData);
+
+                if (postData.userId) {
+
+                    const userRef = doc(db, "users", postData.userId);
+                    const userSnap = await getDoc(userRef);
+                    if (userSnap.exists()) {
+                        setCreatorUsername(userSnap.data().username || "Unknown");
+                    } else {
+                        setCreatorUsername("Unknown");
+                    }
+                }
+
             } else {
                 console.log("No document found");
             }
@@ -61,45 +75,50 @@ function PostDetails() {
     }
 
     return (
-        <div>
-            {post ? (
-                <>
-                    <h1>{post.title}</h1>
-                    <p>{post.content}</p>
+  <div className="post-details-wrapper">
+    {post ? (
+      <>
+        <div className="post-section-box">
+          <h1 className="post-title">{post.title}</h1>
+          <p className="post-meta">Posted by: {creatorUsername}</p>
+          <p className="post-content">{post.content}</p>
 
-                     {post.userId === currentUserId && (
-                        <div>
-                            <EditPostButton postId={id} />
-                            <DeletePostButton />
-                        </div>
-                    )}
-
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            value={newComment}
-                            onChange={(e) => setNewComment(e.target.value)}
-                            placeholder="Write a comment..."
-                        />
-                        <button type="submit">Send</button>
-                    </form>
-
-
-
-                    <div>
-                        <h3>Comments</h3>
-                        {comments.map((comment) => (
-                            <div key={comment.id}>
-                                <p>{comment.username}</p>
-                                <p>{comment.content}</p>
-                            </div>
-                        ))}
-                    </div>
-                </>
-            ) : (
-                <p>Loading post...</p>
-            )}
+          {post.userId === currentUserId && (
+            <div className="post-actions">
+              <EditPostButton postId={id} />
+              <DeletePostButton />
+            </div>
+          )}
         </div>
-    );
+
+        <div className="comment-section-box">
+          <h3 className="comments-heading" >Comments</h3>
+          <form className="comment-form" onSubmit={handleSubmit}>
+            <input
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Write a comment..."
+            />
+            <button type="submit">Send</button>
+          </form>
+
+          <div className="comments-section">
+            {comments.map((comment) => (
+              <div className="comment" key={comment.id}>
+                <p><strong>{comment.username}</strong></p>
+                <p>{comment.content}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </>
+    ) : (
+      <p>Loading post...</p>
+    )}
+  </div>
+);
+
+        
 }
 
 export default PostDetails;

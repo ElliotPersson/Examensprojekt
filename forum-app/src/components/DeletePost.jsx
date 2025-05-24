@@ -19,7 +19,7 @@ function DeletePostButton() {
     }
   }
 
-  return <button onClick={handleDelete}>Delete</button>;
+  return <button className="delete-btn" onClick={handleDelete}>Delete</button>;
 }
 
 export default DeletePostButton;

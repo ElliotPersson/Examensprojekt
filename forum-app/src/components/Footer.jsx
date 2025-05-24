@@ -5,7 +5,7 @@ function Footer() {
     return(
 
         <footer className="footer">
-            <p>text</p>
+            <p>© 2025 ChatForum · Built by Elliot</p>
         </footer>
     )
 }

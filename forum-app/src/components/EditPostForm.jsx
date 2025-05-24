@@ -35,12 +35,12 @@ function EditPostForm() {
   }, [id]);
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       const postRef = doc(db, "posts", id);
       await updateDoc(postRef, { title, content });
-      navigate(`/post/${id}`);
+      navigate(`/post/${id}`)
     } catch (err) {
       setError("Failed to update post");
     }

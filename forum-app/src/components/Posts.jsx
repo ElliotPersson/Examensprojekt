@@ -27,7 +27,7 @@ function Posts() {
           <div className="posts-container">
             {posts.map(post => (
               <div key={post.id} className="post-wrapper">
-                <Link to={`/post/${post.id}`} className="post-link">
+                <Link to={`/post/${post.id}`} className="post-link" draggable="false">
                   <div className="post">
                     <h3>{post.title}</h3>
                     <p>{post.content}</p>
