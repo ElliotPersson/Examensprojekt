@@ -1,44 +1,39 @@
-import { useState, useEffect, } from "react";
-import { getAllPosts } from "../firebase/firestore/posts";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getAllPosts } from "../firebase/firestore/posts"; 
 
-function Posts() {
+function Posts({ searchTerm }) {
+  const [posts, setPosts] = useState([]);
 
-    const [posts, setPosts] = useState([])
+  useEffect(() => {
+    const unsubscribe = getAllPosts(setPosts); 
 
-    useEffect(() => {
+    return () => unsubscribe(); 
+  }, []);
 
-        async function fetchData() {
-            const data = await getAllPosts();
-            console.log(data)
-            setPosts(data)
-        }
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.content.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-        fetchData();
-    }, []);
+  return (
+    <div className="post-section">
+      <h3>See anything interesting?</h3>
 
-
-
-
-    return (
-        <div className="post-section">
-          <h3>See anything interesting?</h3>
-      
-          <div className="posts-container">
-            {posts.map(post => (
-              <div key={post.id} className="post-wrapper">
-                <Link to={`/post/${post.id}`} className="post-link" draggable="false">
-                  <div className="post">
-                    <h3>{post.title}</h3>
-                    <p>{post.content}</p>
-                  </div>
-                </Link>
+      <div className="posts-container">
+        {filteredPosts.map((post) => (
+          <div key={post.id} className="post-wrapper">
+            <Link to={`/post/${post.id}`} className="post-link" draggable="false">
+              <div className="post">
+                <h3>{post.title}</h3>
+                <p>{post.content}</p>
               </div>
-            ))}
+            </Link>
           </div>
-        </div>
-      )
-      
-      }
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default Posts;

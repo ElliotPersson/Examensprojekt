@@ -32,10 +32,11 @@ function CreatePost() {
 
     return(<>
         <div className="form-wrapper">
-        <form className="create-form" onSubmit={handleSubmit}>
+            <h1>Create a post</h1>
+        <form className="create-form" onSubmit={handleSubmit} >
 
-        <input type="text" placeholder="Enter a title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <textarea placeholder="content" value={content} onChange={(e) => setContent(e.target.value)}></textarea>
+        <input type="text" placeholder="Enter a title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        <textarea placeholder="Enter some content for your post..." value={content} onChange={(e) => setContent(e.target.value)} required></textarea>
         <button type="submit">Create post</button>
 
 

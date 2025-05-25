@@ -1,15 +1,27 @@
-import { collection, addDoc, serverTimestamp, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase";
+import { collection, onSnapshot, addDoc, serverTimestamp, query, orderBy } from "firebase/firestore";
 
-export async function addComment(postId, commentData) {
-    const commentsRef = collection(db, "posts", postId, "comments");
-    await addDoc(commentsRef, { ...commentData, createdAt: serverTimestamp() })
+// listens to comment changes in firestore and updates ui:
+export function listenToComments(postId, callback) {
+  const commentsRef = collection(db, "posts", postId, "comments");
+   const q = query(commentsRef, orderBy("createdAt", "desc"))
+
+  const unsubscribe = onSnapshot( q, (snapshot) => {
+    const comments = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    callback(comments);
+  });
+
+  return unsubscribe;
 }
 
-export async function getComments(postId) {
-    const commentsRef = collection(db, "posts", postId, "comments");
-    const q = query(commentsRef, orderBy("createdAt", "desc"));
-    const snapshot = await getDocs(q);
-    
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+// add comment document:
+export async function addComment(postId, commentData) {
+  const commentsRef = collection(db, "posts", postId, "comments");
+  await addDoc(commentsRef, {
+    ...commentData,
+    createdAt: serverTimestamp(),
+  } );
 }

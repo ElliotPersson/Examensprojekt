@@ -30,6 +30,7 @@ function Register() {
 
     return (
         <div className="form-wrapper">
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     value={email}
@@ -51,7 +52,7 @@ function Register() {
                 />
                 <button>Register</button>
 
-                {error && <p className="error-msg">{error}</p>}
+                {error && <p className="error-msg"> Registration failed: {error}</p>}
             </form>
         </div>
     );
